@@ -1,0 +1,98 @@
+[
+  {
+    "Id": 1,
+    "title": "Follow up with Acme Corporation",
+    "description": "Call John Smith to discuss contract terms and address any concerns",
+    "dueDate": "2024-03-20",
+    "priority": "high",
+    "completed": false,
+    "relatedTo": "Deal",
+    "relatedId": "1",
+    "createdAt": "2024-03-10T09:00:00Z",
+    "userId": "user1"
+  },
+  {
+    "Id": 2,
+    "title": "Prepare proposal for TechStart Inc",
+    "description": "Create detailed proposal including pricing and implementation timeline",
+    "dueDate": "2024-03-18",
+    "priority": "high",
+    "completed": false,
+    "relatedTo": "Deal",
+    "relatedId": "2",
+    "createdAt": "2024-03-08T14:30:00Z",
+    "userId": "user1"
+  },
+  {
+    "Id": 3,
+    "title": "Send meeting recap to Global Ventures",
+    "description": "Email summary of discovery call and next steps to Michael Chen",
+    "dueDate": "2024-03-15",
+    "priority": "medium",
+    "completed": true,
+    "relatedTo": "Contact",
+    "relatedId": "3",
+    "createdAt": "2024-03-12T11:15:00Z",
+    "userId": "user1"
+  },
+  {
+    "Id": 4,
+    "title": "Schedule demo for InnovatePlus",
+    "description": "Coordinate demo session with Emily Rodriguez and technical team",
+    "dueDate": "2024-03-22",
+    "priority": "medium",
+    "completed": false,
+    "relatedTo": "Contact",
+    "relatedId": "4",
+    "createdAt": "2024-03-13T16:45:00Z",
+    "userId": "user1"
+  },
+  {
+    "Id": 5,
+    "title": "Update CRM with Nexus Group details",
+    "description": "Add implementation timeline and contact information to system",
+    "dueDate": "2024-03-16",
+    "priority": "low",
+    "completed": true,
+    "relatedTo": "Deal",
+    "relatedId": "5",
+    "createdAt": "2024-03-02T13:20:00Z",
+    "userId": "user1"
+  },
+  {
+    "Id": 6,
+    "title": "Research Bright Future Co requirements",
+    "description": "Analyze their current setup and identify integration needs",
+    "dueDate": "2024-03-25",
+    "priority": "medium",
+    "completed": false,
+    "relatedTo": "Contact",
+    "relatedId": "6",
+    "createdAt": "2024-03-14T10:30:00Z",
+    "userId": "user1"
+  },
+  {
+    "Id": 7,
+    "title": "Quarterly sales report preparation",
+    "description": "Compile Q1 sales data and prepare presentation for management",
+    "dueDate": "2024-03-31",
+    "priority": "high",
+    "completed": false,
+    "relatedTo": "General",
+    "relatedId": "",
+    "createdAt": "2024-03-01T08:00:00Z",
+    "userId": "user1"
+  },
+  {
+    "Id": 8,
+    "title": "Team meeting preparation",
+    "description": "Prepare agenda and review team performance metrics",
+    "dueDate": "2024-03-17",
+    "priority": "low",
+    "completed": false,
+    "relatedTo": "General",
+    "relatedId": "",
+    "createdAt": "2024-03-15T12:00:00Z",
+    "userId": "user1"
+  }
+]

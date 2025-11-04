@@ -1,0 +1,80 @@
+[
+  {
+    "Id": 1,
+    "name": "John Smith",
+    "email": "john.smith@acmecorp.com",
+    "phone": "+1 (555) 123-4567",
+    "company": "Acme Corporation",
+    "position": "VP of Sales",
+    "address": "123 Business St, Suite 100, New York, NY 10001",
+    "notes": "Key decision maker for enterprise deals. Prefers email communication.",
+    "createdAt": "2024-01-15T10:30:00Z",
+    "updatedAt": "2024-02-20T14:15:00Z",
+    "userId": "user1"
+  },
+  {
+    "Id": 2,
+    "name": "Sarah Johnson",
+    "email": "sarah.j@techstart.io",
+    "phone": "+1 (555) 987-6543",
+    "company": "TechStart Inc",
+    "position": "CTO",
+    "address": "456 Innovation Blvd, San Francisco, CA 94102",
+    "notes": "Technical evaluator. Interested in API integrations and security features.",
+    "createdAt": "2024-01-18T09:45:00Z",
+    "updatedAt": "2024-02-22T11:30:00Z",
+    "userId": "user1"
+  },
+  {
+    "Id": 3,
+    "name": "Michael Chen",
+    "email": "m.chen@globalventures.com",
+    "phone": "+1 (555) 456-7890",
+    "company": "Global Ventures LLC",
+    "position": "Managing Director",
+    "address": "789 Finance Way, Chicago, IL 60601",
+    "notes": "Looking for scalable solutions. Budget approved for Q2 implementation.",
+    "createdAt": "2024-01-22T16:20:00Z",
+    "updatedAt": "2024-02-25T08:45:00Z",
+    "userId": "user1"
+  },
+  {
+    "Id": 4,
+    "name": "Emily Rodriguez",
+    "email": "e.rodriguez@innovateplus.com",
+    "phone": "+1 (555) 321-0987",
+    "company": "InnovatePlus",
+    "position": "Product Manager",
+    "address": "321 Creative Ave, Austin, TX 73301",
+    "notes": "Evaluating multiple vendors. Needs demo of advanced features.",
+    "createdAt": "2024-02-01T13:10:00Z",
+    "updatedAt": "2024-02-28T16:20:00Z",
+    "userId": "user1"
+  },
+  {
+    "Id": 5,
+    "name": "David Thompson",
+    "email": "david.t@nexusgroup.org",
+    "phone": "+1 (555) 654-3210",
+    "company": "Nexus Group",
+    "position": "Operations Director",
+    "address": "654 Corporate Plaza, Boston, MA 02108",
+    "notes": "Referral from John Smith. Interested in enterprise package.",
+    "createdAt": "2024-02-05T12:30:00Z",
+    "updatedAt": "2024-03-01T10:15:00Z",
+    "userId": "user1"
+  },
+  {
+    "Id": 6,
+    "name": "Lisa Wong",
+    "email": "lisa.wong@brightfuture.co",
+    "phone": "+1 (555) 789-0123",
+    "company": "Bright Future Co",
+    "position": "CEO",
+    "address": "987 Startup Lane, Seattle, WA 98101",
+    "notes": "Fast-growing startup. Need solution that scales with their growth.",
+    "createdAt": "2024-02-08T11:45:00Z",
+    "updatedAt": "2024-03-02T14:30:00Z",
+    "userId": "user1"
+  }
+]
