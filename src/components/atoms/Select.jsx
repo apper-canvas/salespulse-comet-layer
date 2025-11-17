@@ -18,7 +18,7 @@ const Select = forwardRef(({
         </label>
       )}
       <div className="relative">
-        <select
+<select
           ref={ref}
           className={cn(
             "input-premium appearance-none pr-10",
@@ -26,6 +26,11 @@ const Select = forwardRef(({
             className
           )}
           {...props}
+          onChange={(e) => {
+            if (props.onChange) {
+              props.onChange(e.target.value);
+            }
+          }}
         >
           <option value="">{placeholder}</option>
           {options.map((option, index) => (
