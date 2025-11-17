@@ -1,9 +1,13 @@
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useDrag } from "react-dnd";
-import ApperIcon from "@/components/ApperIcon";
 import { format } from "date-fns";
+import ApperIcon from "@/components/ApperIcon";
+import Modal from "@/components/atoms/Modal";
+import Button from "@/components/atoms/Button";
 
 const DealCard = ({ deal, onEdit, onDelete }) => {
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "deal",
     item: { id: deal.Id, stage: deal.stage },
@@ -23,56 +27,87 @@ const DealCard = ({ deal, onEdit, onDelete }) => {
   const probabilityColor = deal.probability >= 75 ? "text-green-600" : 
                           deal.probability >= 50 ? "text-yellow-600" : "text-red-600";
 
-  return (
-    <motion.div
-      ref={drag}
-      className={`p-4 rounded-lg border-l-4 cursor-move transition-all duration-200 ${
-        stageColors[deal.stage] || "border-l-gray-500 bg-gray-50"
-      } ${isDragging ? "opacity-50 shadow-2xl" : "shadow-sm hover:shadow-md"}`}
-      whileHover={{ y: -2 }}
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-    >
-      <div className="flex justify-between items-start mb-2">
-        <h4 className="font-semibold text-gray-900 text-sm">{deal.companyName}</h4>
-        <div className="flex space-x-1">
-          <button
-            onClick={() => onEdit(deal)}
-            className="p-1 hover:bg-white rounded transition-colors"
-          >
-            <ApperIcon name="Edit2" className="w-4 h-4 text-gray-400 hover:text-primary-600" />
-          </button>
-          <button
-            onClick={() => onDelete(deal.Id)}
-            className="p-1 hover:bg-white rounded transition-colors"
-          >
-            <ApperIcon name="Trash2" className="w-4 h-4 text-gray-400 hover:text-red-600" />
-          </button>
-        </div>
-      </div>
-      
-      <div className="space-y-2">
-        <p className="text-lg font-bold text-gray-900">
-          ${deal.value?.toLocaleString() || "0"}
-        </p>
-        
-        <div className="flex items-center justify-between text-xs text-gray-600">
-          <span className={`font-medium ${probabilityColor}`}>
-            {deal.probability}% probability
-          </span>
-          <span>
-            {deal.expectedCloseDate ? format(new Date(deal.expectedCloseDate), "MMM dd") : "No date"}
-          </span>
-        </div>
-        
-        <div className="flex items-center space-x-2">
-          <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
-            <ApperIcon name="User" className="w-3 h-3 text-primary-600" />
+return (
+    <>
+      <motion.div
+        ref={drag}
+        className={`p-4 rounded-lg border-l-4 cursor-move transition-all duration-200 ${
+          stageColors[deal.stage] || "border-l-gray-500 bg-gray-50"
+        } ${isDragging ? "opacity-50 shadow-2xl" : "shadow-sm hover:shadow-md"}`}
+        whileHover={{ y: -2 }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <div className="flex justify-between items-start mb-2">
+          <h4 className="font-semibold text-gray-900 text-sm">{deal.companyName}</h4>
+          <div className="flex space-x-1">
+            <button
+              onClick={() => onEdit(deal)}
+              className="p-1 hover:bg-white rounded transition-colors"
+            >
+              <ApperIcon name="Edit2" className="w-4 h-4 text-gray-400 hover:text-primary-600" />
+            </button>
+            <button
+              onClick={() => setShowDeleteConfirm(true)}
+              className="p-1 hover:bg-white rounded transition-colors"
+            >
+              <ApperIcon name="Trash2" className="w-4 h-4 text-gray-400 hover:text-red-600" />
+            </button>
           </div>
-          <span className="text-xs text-gray-600 truncate">{deal.assignedTo}</span>
         </div>
-      </div>
-    </motion.div>
+        
+        <div className="space-y-2">
+          <p className="text-lg font-bold text-gray-900">
+            ${deal.value?.toLocaleString() || "0"}
+          </p>
+          
+          <div className="flex items-center justify-between text-xs text-gray-600">
+            <span className={`font-medium ${probabilityColor}`}>
+              {deal.probability}% probability
+            </span>
+            <span>
+              {deal.expectedCloseDate ? format(new Date(deal.expectedCloseDate), "MMM dd") : "No date"}
+            </span>
+          </div>
+          
+          <div className="flex items-center space-x-2">
+            <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+              <ApperIcon name="User" className="w-3 h-3 text-primary-600" />
+            </div>
+            <span className="text-xs text-gray-600 truncate">{deal.assignedTo}</span>
+          </div>
+        </div>
+      </motion.div>
+
+      <Modal
+        isOpen={showDeleteConfirm}
+        onClose={() => setShowDeleteConfirm(false)}
+        title="Confirm Delete"
+      >
+        <div className="space-y-4">
+          <p className="text-gray-600">
+            Are you sure you want to delete "{deal.title}"? This action cannot be undone.
+          </p>
+          <div className="flex justify-end space-x-3">
+            <Button
+              variant="secondary"
+              onClick={() => setShowDeleteConfirm(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="danger"
+              onClick={() => {
+                onDelete(deal.Id);
+                setShowDeleteConfirm(false);
+              }}
+            >
+              Delete
+            </Button>
+          </div>
+        </div>
+      </Modal>
+    </>
   );
 };
 

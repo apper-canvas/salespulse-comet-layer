@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import ApperIcon from "@/components/ApperIcon";
+import Modal from "@/components/atoms/Modal";
+import Button from "@/components/atoms/Button";
 import { format } from "date-fns";
 
 const TaskItem = ({ task, onToggle, onEdit, onDelete, index = 0 }) => {
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const priorityColors = {
     high: "bg-red-100 text-red-800 border-red-200",
     medium: "bg-yellow-100 text-yellow-800 border-yellow-200",
@@ -92,13 +96,41 @@ const TaskItem = ({ task, onToggle, onEdit, onDelete, index = 0 }) => {
         >
           <ApperIcon name="Edit2" className="w-4 h-4" />
         </button>
-        <button
-          onClick={() => onDelete(task.Id)}
+<button
+          onClick={() => setShowDeleteConfirm(true)}
           className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
         >
           <ApperIcon name="Trash2" className="w-4 h-4" />
         </button>
       </div>
+<Modal
+        isOpen={showDeleteConfirm}
+        onClose={() => setShowDeleteConfirm(false)}
+        title="Confirm Delete"
+      >
+        <div className="space-y-4">
+          <p className="text-gray-600">
+            Are you sure you want to delete "{task.title}"? This action cannot be undone.
+          </p>
+          <div className="flex justify-end space-x-3">
+            <Button
+              variant="secondary"
+              onClick={() => setShowDeleteConfirm(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="danger"
+              onClick={() => {
+                onDelete(task.Id);
+                setShowDeleteConfirm(false);
+              }}
+            >
+              Delete
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </motion.div>
   );
 };
