@@ -13,27 +13,31 @@ const contactService = {
     return contacts.find(contact => contact.Id === parseInt(id));
   },
 
-  async create(contactData) {
+async create(contactData) {
     await new Promise(resolve => setTimeout(resolve, 400));
     const newContact = {
       ...contactData,
       Id: Math.max(...contacts.map(c => c.Id), 0) + 1,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      userId: "user1"
+      userId: "user1",
+      // Convert company name to company ID if needed
+      companyId: contactData.companyId || contactData.company || null
     };
     contacts.push(newContact);
     return { ...newContact };
   },
 
-  async update(id, updates) {
+async update(id, updates) {
     await new Promise(resolve => setTimeout(resolve, 350));
     const index = contacts.findIndex(contact => contact.Id === parseInt(id));
     if (index !== -1) {
       contacts[index] = {
         ...contacts[index],
         ...updates,
-        updatedAt: new Date().toISOString()
+        updatedAt: new Date().toISOString(),
+        // Handle company ID updates
+        companyId: updates.companyId !== undefined ? updates.companyId : contacts[index].companyId
       };
       return { ...contacts[index] };
     }

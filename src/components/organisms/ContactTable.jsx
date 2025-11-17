@@ -22,18 +22,33 @@ const ContactTable = ({ contacts, onEdit, onDelete, onAdd, loading }) => {
     setCurrentPage(1);
   };
 
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    contact.company.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+const filteredContacts = contacts.filter(contact => {
+    const companyName = getCompanyName(contact.companyId);
+    return contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+           contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+           companyName.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
-  const sortedContacts = [...filteredContacts].sort((a, b) => {
-    const aVal = a[sortField] || "";
-    const bVal = b[sortField] || "";
+const sortedContacts = [...filteredContacts].sort((a, b) => {
+    let aVal, bVal;
+    if (sortField === 'company') {
+      aVal = getCompanyName(a.companyId);
+      bVal = getCompanyName(b.companyId);
+    } else {
+      aVal = a[sortField] || "";
+      bVal = b[sortField] || "";
+    }
     const direction = sortDirection === "asc" ? 1 : -1;
     return aVal.localeCompare(bVal) * direction;
   });
+
+  const getCompanyName = (companyId) => {
+    if (!companyId) return "";
+    // In a real app, this would come from props or context
+    // For now, return the company field if it exists for backward compatibility
+    const contact = contacts.find(c => c.companyId === companyId);
+    return contact?.company || `Company ${companyId}`;
+  };
 
   const totalPages = Math.ceil(sortedContacts.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -179,8 +194,8 @@ const ContactTable = ({ contacts, onEdit, onDelete, onAdd, loading }) => {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">{contact.email}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{contact.company}</div>
+<td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-900">{getCompanyName(contact.companyId)}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">{contact.position}</div>

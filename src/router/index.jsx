@@ -17,6 +17,7 @@ const suspenseFallback = (
 const LandingPage = lazy(() => import("@/components/pages/LandingPage"));
 const Dashboard = lazy(() => import("@/components/pages/Dashboard"));
 const Contacts = lazy(() => import("@/components/pages/Contacts"));
+const Companies = lazy(() => import("@/components/pages/Companies"));
 const Deals = lazy(() => import("@/components/pages/Deals"));
 const Tasks = lazy(() => import("@/components/pages/Tasks"));
 const Reports = lazy(() => import("@/components/pages/Reports"));
@@ -31,6 +32,10 @@ const mainRoutes = [
   {
     path: "contacts",
     element: <Suspense fallback={suspenseFallback}><Contacts /></Suspense>
+  },
+  {
+    path: "companies",
+    element: <Suspense fallback={suspenseFallback}><Companies /></Suspense>
   },
   {
     path: "deals", 

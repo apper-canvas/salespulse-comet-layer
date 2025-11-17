@@ -3,22 +3,25 @@ import ContactTable from "@/components/organisms/ContactTable";
 import Modal from "@/components/atoms/Modal";
 import Button from "@/components/atoms/Button";
 import Input from "@/components/atoms/Input";
+import Select from "@/components/atoms/Select";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 import contactService from "@/services/api/contactService";
+import companyService from "@/services/api/companyService";
 import { toast } from "react-toastify";
 
 const Contacts = () => {
-  const [contacts, setContacts] = useState([]);
+const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [editingContact, setEditingContact] = useState(null);
+  const [companies, setCompanies] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    company: "",
+    companyId: "",
     position: "",
     address: "",
     notes: ""
@@ -40,16 +43,26 @@ const Contacts = () => {
     }
   };
 
-  useEffect(() => {
+useEffect(() => {
     loadContacts();
+    loadCompanies();
   }, []);
 
-  const resetForm = () => {
+  const loadCompanies = async () => {
+    try {
+      const data = await companyService.getAll();
+      setCompanies(data);
+    } catch (err) {
+      console.error("Error loading companies:", err);
+    }
+  };
+
+const resetForm = () => {
     setFormData({
       name: "",
       email: "",
       phone: "",
-      company: "",
+      companyId: "",
       position: "",
       address: "",
       notes: ""
@@ -64,11 +77,11 @@ const Contacts = () => {
   };
 
   const handleEdit = (contact) => {
-    setFormData({
+setFormData({
       name: contact.name || "",
       email: contact.email || "",
       phone: contact.phone || "",
-      company: contact.company || "",
+      companyId: contact.companyId || "",
       position: contact.position || "",
       address: contact.address || "",
       notes: contact.notes || ""
@@ -100,7 +113,7 @@ const Contacts = () => {
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       errors.email = "Email is invalid";
     }
-    if (!formData.company.trim()) errors.company = "Company is required";
+if (!formData.companyId) errors.companyId = "Company is required";
     if (!formData.position.trim()) errors.position = "Position is required";
 
     setFormErrors(errors);
@@ -115,7 +128,7 @@ const Contacts = () => {
     setSubmitting(true);
 
     try {
-      if (editingContact) {
+if (editingContact) {
         const updated = await contactService.update(editingContact.Id, formData);
         setContacts(contacts.map(c => c.Id === editingContact.Id ? updated : c));
         toast.success("Contact updated successfully");
@@ -201,13 +214,21 @@ const Contacts = () => {
               placeholder="Enter phone number"
             />
 
-            <Input
+<Select
               label="Company"
-              value={formData.company}
-              onChange={(e) => handleInputChange("company", e.target.value)}
-              error={formErrors.company}
-              placeholder="Enter company name"
-            />
+              value={formData.companyId}
+              onChange={(value) => handleInputChange("companyId", value)}
+              error={formErrors.companyId}
+              placeholder="Select a company"
+              required
+            >
+              <option value="">Select Company</option>
+              {companies.map(company => (
+                <option key={company.Id} value={company.Id}>
+                  {company.name}
+                </option>
+              ))}
+            </Select>
 
             <Input
               label="Position"

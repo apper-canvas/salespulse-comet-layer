@@ -1,0 +1,72 @@
+[
+  {
+    "Id": 1,
+    "name": "TechFlow Solutions",
+    "industry": "Technology",
+    "website": "https://techflow-solutions.com",
+    "phone": "+1 (555) 123-4567",
+    "email": "contact@techflow-solutions.com",
+    "address": "123 Innovation Drive, San Francisco, CA 94105",
+    "description": "Leading provider of cloud-based software solutions for enterprise clients",
+    "employeeCount": 250,
+    "foundedYear": 2018,
+    "createdAt": "2024-01-15T09:00:00.000Z",
+    "updatedAt": "2024-01-15T09:00:00.000Z"
+  },
+  {
+    "Id": 2,
+    "name": "Global Marketing Inc",
+    "industry": "Marketing & Advertising",
+    "website": "https://globalmarketing.com",
+    "phone": "+1 (555) 987-6543",
+    "email": "info@globalmarketing.com",
+    "address": "456 Business Plaza, New York, NY 10001",
+    "description": "Full-service marketing agency specializing in digital transformation",
+    "employeeCount": 75,
+    "foundedYear": 2015,
+    "createdAt": "2024-01-15T10:30:00.000Z",
+    "updatedAt": "2024-01-15T10:30:00.000Z"
+  },
+  {
+    "Id": 3,
+    "name": "BuildRight Construction",
+    "industry": "Construction",
+    "website": "https://buildright.com",
+    "phone": "+1 (555) 456-7890",
+    "email": "projects@buildright.com",
+    "address": "789 Industrial Way, Austin, TX 78701",
+    "description": "Commercial and residential construction company with 25 years of experience",
+    "employeeCount": 150,
+    "foundedYear": 1999,
+    "createdAt": "2024-01-15T11:45:00.000Z",
+    "updatedAt": "2024-01-15T11:45:00.000Z"
+  },
+  {
+    "Id": 4,
+    "name": "HealthCare Partners",
+    "industry": "Healthcare",
+    "website": "https://healthcarepartners.com",
+    "phone": "+1 (555) 321-9876",
+    "email": "admin@healthcarepartners.com",
+    "address": "321 Medical Center Drive, Chicago, IL 60601",
+    "description": "Comprehensive healthcare services and medical practice management",
+    "employeeCount": 500,
+    "foundedYear": 2010,
+    "createdAt": "2024-01-15T14:20:00.000Z",
+    "updatedAt": "2024-01-15T14:20:00.000Z"
+  },
+  {
+    "Id": 5,
+    "name": "EcoGreen Energy",
+    "industry": "Renewable Energy",
+    "website": "https://ecogreenenergy.com",
+    "phone": "+1 (555) 654-3210",
+    "email": "solutions@ecogreenenergy.com",
+    "address": "654 Sustainability Boulevard, Portland, OR 97201",
+    "description": "Innovative renewable energy solutions for residential and commercial properties",
+    "employeeCount": 95,
+    "foundedYear": 2020,
+    "createdAt": "2024-01-15T16:00:00.000Z",
+    "updatedAt": "2024-01-15T16:00:00.000Z"
+  }
+]
