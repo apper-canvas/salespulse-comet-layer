@@ -64,7 +64,7 @@ const UserProfile = () => {
       errors.role = "Role is required";
     }
 
-    if (profile.phone && !/^[\d\s\-\+\(\)]+$/.test(profile.phone)) {
+if (profile.phone && !/^[\d\s\-+()]+$/.test(profile.phone)) {
       errors.phone = "Please enter a valid phone number";
     }
 
