@@ -221,14 +221,11 @@ if (editingContact) {
               error={formErrors.companyId}
               placeholder="Select a company"
               required
-            >
-              <option value="">Select Company</option>
-              {companies.map(company => (
-                <option key={company.Id} value={company.Id}>
-                  {company.name}
-                </option>
-              ))}
-            </Select>
+              options={companies.map(company => ({
+                label: company.name,
+                value: company.Id
+              }))}
+            />
 
             <Input
               label="Position"
