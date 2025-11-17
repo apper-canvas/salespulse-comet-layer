@@ -22,7 +22,7 @@ const Deals = lazy(() => import("@/components/pages/Deals"));
 const Tasks = lazy(() => import("@/components/pages/Tasks"));
 const Reports = lazy(() => import("@/components/pages/Reports"));
 const NotFound = lazy(() => import("@/components/pages/NotFound"));
-
+const UserProfile = lazy(() => import("@/components/pages/UserProfile"));
 const mainRoutes = [
   {
     path: "",
@@ -48,6 +48,10 @@ const mainRoutes = [
   {
     path: "reports",
     element: <Suspense fallback={suspenseFallback}><Reports /></Suspense>
+},
+  {
+    path: "profile",
+    element: <Suspense fallback={suspenseFallback}><UserProfile /></Suspense>
   },
   {
     path: "*",

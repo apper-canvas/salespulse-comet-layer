@@ -9,7 +9,8 @@ const navigation = [
     { name: "Companies", href: "companies", icon: "Building" },
     { name: "Deals", href: "deals", icon: "DollarSign" },
     { name: "Tasks", href: "tasks", icon: "CheckSquare" },
-    { name: "Reports", href: "reports", icon: "PieChart" },
+{ name: "Reports", href: "reports", icon: "PieChart" },
+    { name: "Profile", href: "profile", icon: "User" },
   ];
 
   const NavItem = ({ item, onClick }) => (

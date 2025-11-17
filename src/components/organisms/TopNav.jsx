@@ -1,9 +1,11 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import ApperIcon from "@/components/ApperIcon";
+import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import ApperIcon from "@/components/ApperIcon";
 
 const TopNav = ({ onMenuClick, user }) => {
+  const navigate = useNavigate();
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
 
@@ -123,7 +125,10 @@ const TopNav = ({ onMenuClick, user }) => {
                       <p className="text-sm text-gray-500">{user?.email}</p>
                     </div>
                     <div className="py-1">
-                      <button className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
+<button 
+                        onClick={() => navigate("/profile")}
+                        className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                      >
                         <ApperIcon name="User" className="w-4 h-4" />
                         <span>Profile</span>
                       </button>
