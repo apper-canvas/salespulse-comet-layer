@@ -22,14 +22,26 @@ const ContactTable = ({ contacts, onEdit, onDelete, onAdd, loading }) => {
     setCurrentPage(1);
   };
 
-const filteredContacts = contacts.filter(contact => {
-    const companyName = getCompanyName(contact.companyId);
-    return contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-           contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-           companyName.toLowerCase().includes(searchTerm.toLowerCase());
-  });
+// Helper function to get company name - must be declared before use
+  const getCompanyName = (companyId) => {
+    if (!companyId) return "";
+    if (!contacts || !Array.isArray(contacts)) return "";
+    // In a real app, this would come from props or context
+    // For now, return the company field if it exists for backward compatibility
+    const contact = contacts.find(c => c.companyId === companyId);
+    return contact?.company || `Company ${companyId}`;
+  };
 
-const sortedContacts = [...filteredContacts].sort((a, b) => {
+  const filteredContacts = contacts?.filter(contact => {
+    if (!contact) return false;
+    const companyName = getCompanyName(contact.companyId);
+    const searchLower = searchTerm.toLowerCase();
+    return (contact.name?.toLowerCase().includes(searchLower) || false) ||
+           (contact.email?.toLowerCase().includes(searchLower) || false) ||
+           companyName.toLowerCase().includes(searchLower);
+  }) || [];
+
+  const sortedContacts = [...filteredContacts].sort((a, b) => {
     let aVal, bVal;
     if (sortField === 'company') {
       aVal = getCompanyName(a.companyId);
@@ -41,14 +53,6 @@ const sortedContacts = [...filteredContacts].sort((a, b) => {
     const direction = sortDirection === "asc" ? 1 : -1;
     return aVal.localeCompare(bVal) * direction;
   });
-
-  const getCompanyName = (companyId) => {
-    if (!companyId) return "";
-    // In a real app, this would come from props or context
-    // For now, return the company field if it exists for backward compatibility
-    const contact = contacts.find(c => c.companyId === companyId);
-    return contact?.company || `Company ${companyId}`;
-  };
 
   const totalPages = Math.ceil(sortedContacts.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
